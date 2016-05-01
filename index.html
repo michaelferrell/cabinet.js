@@ -4,6 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Cabinet JS</title>
+<meta name="description" content="A simple and convenient interface for accessing local and session storage." />
+<meta charset="utf-8" />
 <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
  <link rel="stylesheet" type="text/css" href="main.css">
 </head>
@@ -73,7 +75,7 @@
 	<section class="section">
 		<span class="title">get</span>
 		<code class="method">Cabinet.get(key);</code>
-		<p class="description">Returns the saved value for given key, even if the saved value is hash object. If value is null or undefined it returns a default value.</p>
+		<p class="description">Returns the saved value for a given key.</p>
 		<pre class="markup">
 			<div class="group">
 				<code>
@@ -107,7 +109,7 @@
 	<section class="section">
 		<span class="title">getAll</span>
 		<code class="method">Cabinet.getAll();</code>
-		<p class="description">Returns all saved values and objects in an Array</p>
+		<p class="description">Returns all saved values and objects in an Array.</p>
 		<pre class="markup">
 			<code>
 				Cabinet.<span class="class">getAll</span>();
@@ -118,7 +120,7 @@
 	<section class="section">
 		<span class="title">remove</span>
 		<code class="method">Cabinet.remove(key);</code>
-		<p class="description">Returns all saved values and objects in an Array</p>
+		<p class="description">Removes a saved value for the given key.</p>
 		<pre class="markup">
 			<code>
 				Cabinet.<span class="class">remove</span>(key);
