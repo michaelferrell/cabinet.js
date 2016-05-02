@@ -15,58 +15,51 @@
 	<h1 class="branding">Cabinet JS</h1>
 	<h2 class="tagline">A simple and convenient interface for accessing local and session storage.</h2>
 	<h3>LocalStorage API Reference</h3>
-
+	<p class="overview">Data stored in localStorage has no expiration time.</p>
 	<section class="section">
 		<span class="title">set</span>
 		<code class="method">Cabinet.set(key, data);</code>
 		<p class="description">Set a key to a particular value. Available types includes strings, numbers, booleans, arrays, objects, collections, and dates.</p>
 		<pre class="markup">
 			<div class="group">
-				<code class="comment">&lt;!-- Saving Strings --&gt;</code>
 				<code>
-					Cabinet.<span class="class">set</span>(<span class="tag">'dog'</span>, <span class="tag">'Scooby'</span>);
+					Cabinet.<span class="class">set</span>(<span class="tag">'dog'</span>, <span class="tag">'Scooby'</span>); <span class="comment">// Saving Strings</span>
 				</code>
 			</div><!--/group-->
 
 			<div class="group">
-				<code class="comment">&lt;!-- Saving Numbers --&gt;</code>
 				<code>
-					Cabinet.<span class="class">set</span>(<span class="tag">'algebra'</span>, <span class="tag">50/(10-5)</span>);
+					Cabinet.<span class="class">set</span>(<span class="tag">'algebra'</span>, <span class="tag">50/(10-5)</span>); <span class="comment">// Saving Numbers</span>
 				</code>
 			</div><!--/group-->
 
 			<div class="group">
-				<code class="comment">&lt;!-- Saving Objects --&gt;</code>
 				<code>
-					Cabinet.<span class="class">set</span>(<span class="tag">'person'</span>, {name: <span class="tag">"Michael"</span>, age: <span class="tag">26</span>, location: <span class="tag">"Bellingham, WA"</span>});
+					Cabinet.<span class="class">set</span>(<span class="tag">'person'</span>, {name: <span class="tag">"Michael"</span>, age: <span class="tag">26</span>, gender: <span class="tag">"Male"</span>}); <span class="comment">// Saving Objects</span>
 				</code>
 			</div><!--/group-->
 
 			<div class="group">
-				<code class="comment">&lt;!-- Saving Arrays --&gt;</code>
 				<code>
-					Cabinet.<span class="class">set</span>(<span class="tag">'animals'</span>, [<span class="tag">'lion'</span>, <span class="tag">'tiger'</span>, <span class="tag">'bear'</span>]);
+					Cabinet.<span class="class">set</span>(<span class="tag">'animals'</span>, [<span class="tag">'lion'</span>, <span class="tag">'tiger'</span>, <span class="tag">'bear'</span>]); <span class="comment">// Saving Arrays</span>
 				</code>
 			</div><!--/group-->
 
 			<div class="group">
-				<code class="comment">&lt;!-- Saving Collections --&gt;</code>
 				<code>
-					Cabinet.<span class="class">set</span>(<span class="tag">'friends'</span>, [{name: <span class="tag">"Jack"</span>}, {name: <span class="tag">"Iris"</span>}, {name: <span class="tag">"Jared"</span>}]);
+					Cabinet.<span class="class">set</span>(<span class="tag">'friends'</span>, [{name: <span class="tag">"Jack"</span>}, {name: <span class="tag">"Iris"</span>}]); <span class="comment">// Saving Collections</span>
 				</code>
 			</div><!--/group-->
 
 			<div class="group">
-				<code class="comment">&lt;!-- Saving Booleans --&gt;</code>
 				<code>
-					Cabinet.<span class="class">set</span>(<span class="tag">'check'</span>, <span class="tag">true</span>);
+					Cabinet.<span class="class">set</span>(<span class="tag">'check'</span>, <span class="tag">true</span>); <span class="comment">// Saving Booleans</span>
 				</code>
 			</div><!--/group-->
 
 			<div class="group">
-				<code class="comment">&lt;!-- Saving Dates --&gt;</code>
 				<code>
-					Cabinet.<span class="class">set</span>(<span class="tag">'reminder'</span>, <span class="class">new</span> Date(<span class="tag">2006</span>, <span class="tag">0</span>, <span class="tag">2</span>, <span class="tag">15</span>, <span class="tag">4</span>, <span class="tag">5</span>));
+					Cabinet.<span class="class">set</span>(<span class="tag">'reminder'</span>, <span class="class">new</span> Date(<span class="tag">2006</span>, <span class="tag">0</span>, <span class="tag">2</span>, <span class="tag">15</span>, <span class="tag">4</span>, <span class="tag">5</span>)); <span class="comment">// Saving Dates</span>
 				</code>
 			</div><!--/group-->
 		</pre>
@@ -125,9 +118,6 @@
 			<code>
 				Cabinet.<span class="class">remove</span>(key);
 			</code>
-			<code>
-				<span class="class">></span> <span class="tag">true</span>
-			</code>
 		</pre>
 	</section>
 
@@ -138,9 +128,6 @@
 		<pre class="markup">
 			<code>
 				Cabinet.<span class="class">removeAll</span>();
-			</code>
-			<code>
-				<span class="class">></span> <span class="tag">true</span>
 			</code>
 		</pre>
 	</section>
@@ -178,9 +165,8 @@
 
 	<h3>Session Storage API Reference</h3>
 
-	<section class="section">
-		<p class="description">Accessing the session storage interface is as simple as calling the same methods on <strong>cabinet.session</strong></p>
-	</section>
+	<p class="overview">Data stored in sessionStorage gets cleared when the page session ends, that is, the duration that the browser is open.</p>
+	<p class="overview">Accessing the session storage interface is as simple as calling the same methods on <strong>cabinet.session</strong></p>
 	<section class="section">
 		<span class="title">set</span>
 		<code class="method">Cabinet.session.set(key, data);</code>
@@ -218,9 +204,6 @@
 			<code>
 				Cabinet.session.<span class="class">remove</span>(<span class="tag">'friends'</span>);
 			</code>
-			<code>
-				<span class="class">></span> <span class="tag">true</span>
-			</code>
 		</pre>
 	</section>
 	<section class="section">
@@ -229,9 +212,6 @@
 		<pre class="markup">
 			<code>
 				Cabinet.session.<span class="class">removeAll</span>();
-			</code>
-			<code>
-				<span class="class">></span> <span class="tag">true</span>
 			</code>
 		</pre>
 	</section>
