@@ -48,7 +48,9 @@ p {
 }
 .header {
 	background-color: #536dfe;
-	padding: 50px 0;
+	background-image: url('purple-lines-2.png');
+	background-size: 100%;
+	padding: 100px 0;
     text-align: center;
 }
 .branding {
@@ -86,7 +88,7 @@ p {
 }
 .btn-download:hover {
 	background-color: #fff;
-	color: #536dfe;
+	color: #2a2730;
 }
 .wrapper {
 	margin: 0 auto;
@@ -110,7 +112,7 @@ p {
 }
 h3 {
 	font-size: 1.5rem;
-	color: #536dfe;
+	color: #2a2730;
 	font-weight: 600;
 	margin-top: 40px;
 }
@@ -267,4 +269,17 @@ h3 {
     padding: 8px;
     line-height: 1.42857143;
     vertical-align: top;
+}
+.footer {
+	text-align: center;
+	background-color: #2a2730;
+	margin-top: 20px;
+	padding: 30px 0;
+}
+.footer .footer-copy {
+	color: #ccc;
+	font-weight: 300;
+}
+.footer .footer-copy a {
+	color: #ccc;
 }
