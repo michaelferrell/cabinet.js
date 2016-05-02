@@ -52,7 +52,6 @@ p {
 	line-height: 2rem;
 	font-weight: 300;
     color: #7E8084;
-    margin-bottom: 50px;
 }
 .logo {
 	width: 41px;
@@ -81,10 +80,10 @@ p {
 	}
 }
 h3 {
-	font-size: 1.6rem;
-	color: #333;
-	font-weight: 400;
-	margin-top: 20px;
+	font-size: 1.5rem;
+	color: #536dfe;
+	font-weight: 600;
+	margin-top: 40px;
 }
 .section {
 	margin-top: 30px;

@@ -14,12 +14,12 @@
 	<img src="logo.png" class="logo" />
 	<h1 class="branding">Cabinet JS</h1>
 	<h2 class="tagline">A simple and convenient interface for accessing local and session storage.</h2>
-	<h3>API Reference</h3>
+	<h3>LocalStorage API Reference</h3>
 
 	<section class="section">
 		<span class="title">set</span>
 		<code class="method">Cabinet.set(key, data);</code>
-		<p class="description">A convenient version of what is perhaps the most common use-case for map: extracting a list of property values.</p>
+		<p class="description">Set a key to a particular value. Available types includes strings, numbers, booleans, arrays, objects, collections, and dates.</p>
 		<pre class="markup">
 			<div class="group">
 				<code class="comment">&lt;!-- Saving Strings --&gt;</code>
@@ -52,7 +52,7 @@
 			<div class="group">
 				<code class="comment">&lt;!-- Saving Collections --&gt;</code>
 				<code>
-					Cabinet.<span class="class">set</span>(<span class="tag">'friends'</span>, [{name: <span class="tag">"Jack"</span>}, {name: <span class="tag">"George"</span>}, {name: <span class="tag">"Jared"</span>}]);
+					Cabinet.<span class="class">set</span>(<span class="tag">'friends'</span>, [{name: <span class="tag">"Jack"</span>}, {name: <span class="tag">"Iris"</span>}, {name: <span class="tag">"Jared"</span>}]);
 				</code>
 			</div><!--/group-->
 
@@ -109,7 +109,7 @@
 	<section class="section">
 		<span class="title">getAll</span>
 		<code class="method">Cabinet.getAll();</code>
-		<p class="description">Returns all saved values and objects in an Array.</p>
+		<p class="description">Returns all saved values and objects in an array.</p>
 		<pre class="markup">
 			<code>
 				Cabinet.<span class="class">getAll</span>();
@@ -125,6 +125,9 @@
 			<code>
 				Cabinet.<span class="class">remove</span>(key);
 			</code>
+			<code>
+				<span class="class">></span> <span class="tag">true</span>
+			</code>
 		</pre>
 	</section>
 
@@ -136,6 +139,9 @@
 			<code>
 				Cabinet.<span class="class">removeAll</span>();
 			</code>
+			<code>
+				<span class="class">></span> <span class="tag">true</span>
+			</code>
 		</pre>
 	</section>
 
@@ -143,10 +149,13 @@
 	<section class="section">
 		<span class="title">keys</span>
 		<code class="method">Cabinet.keys();</code>
-		<p class="description">Returns an array of keys</p>
+		<p class="description">Returns an array of keys.</p>
 		<pre class="markup">
 			<code>
 				Cabinet.<span class="class">keys</span>();
+			</code>
+			<code>
+				<span class="class">></span> [<span class="tag">'dog'</span>, <span class="tag">'algebra'</span>, <span class="tag">'person'</span>, <span class="tag">'animals'</span>, <span class="tag">'friends'</span>, <span class="tag">'check'</span>, <span class="tag">'reminder'</span>]
 			</code>
 		</pre>
 	</section>
@@ -155,80 +164,172 @@
 	<section class="section">
 		<span class="title">count</span>
 		<code class="method">Cabinet.count();</code>
-		<p class="description">Returns the number of keys</p>
+		<p class="description">Returns the number of keys.</p>
 		<pre class="markup">
 			<code>
 				Cabinet.<span class="class">count</span>();
 			</code>
+			<code>
+				<span class="class">></span> <span class="tag">7</span>
+			</code>
 		</pre>
 	</section>
 
-	<table class="demo-table">
-		<thead>
-			<tr>
-				<th>Local</th>
-				<th>Session</th>
-			</tr>
-		</thead>
-		<tobdy>
-			<tr>
-				<td>
-					<button id="demo-1" class="btn btn-success">Local Set</button>
-				</td>
-				<td>
-					<button id="demo-5" class="btn btn-success">Session Set</button>
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<button id="demo-2" class="btn">Local Get</button>
-				</td>
-				<td>
-					<button id="demo-6" class="btn">Session Get</button>
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<button id="demo-13" class="btn btn-alert">Local Remove</button>
-				</td>
-				<td>
-					<button id="demo-14" class="btn btn-alert">Session Remove</button>
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<button id="demo-3" class="btn btn-alert">Local Remove All</button>
-				</td>
-				<td>
-					<button id="demo-10" class="btn btn-alert">Session Remove All</button>
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<button id="demo-4" class="btn btn-primary">Local Get All</button>
-				</td>
-				<td>
-					<button id="demo-7" class="btn btn-primary">Session Get All</button>
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<button id="demo-8" class="btn btn-primary">Local Keys</button>
-				</td>
-				<td>
-					<button id="demo-9" class="btn btn-primary">Session Keys</button>
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<button id="demo-11" class="btn">Local Count</button>
-				</td>
-				<td>
-					<button id="demo-12" class="btn">Session Count</button>
-				</td>
-			</tr>
-		</tobdy>
-	</table>
+
+	<h3>Session Storage API Reference</h3>
+
+	<section class="section">
+		<p class="description">Accessing the session storage interface is as simple as calling the same methods on <strong>cabinet.session</strong></p>
+	</section>
+	<section class="section">
+		<span class="title">set</span>
+		<code class="method">Cabinet.session.set(key, data);</code>
+		<pre class="markup">
+			<code>
+				Cabinet.session.<span class="class">set</span>(<span class="tag">'friends'</span>, [{name: <span class="tag">"Jack"</span>}, {name: <span class="tag">"Iris"</span>}, {name: <span class="tag">"Jared"</span>}]);
+			</code>
+		</pre>
+	</section>
+	<section class="section">
+		<span class="title">get</span>
+		<code class="method">Cabinet.session.get(key);</code>
+		<pre class="markup">
+			<code>
+				Cabinet.session.<span class="class">get</span>(<span class="tag">'friends'</span>);
+			</code>
+			<code>
+				<span class="class">></span> [{name: <span class="tag">"Jack"</span>}, {name: <span class="tag">"Iris"</span>}, {name: <span class="tag">"Jared"</span>}]
+			</code>
+		</pre>
+	</section>
+	<section class="section">
+		<span class="title">getAll</span>
+		<code class="method">Cabinet.session.getAll();</code>
+		<pre class="markup">
+			<code>
+				Cabinet.session.<span class="class">getAll</span>();
+			</code>
+		</pre>
+	</section>
+	<section class="section">
+		<span class="title">remove</span>
+		<code class="method">Cabinet.session.remove(key);</code>
+		<pre class="markup">
+			<code>
+				Cabinet.session.<span class="class">remove</span>(<span class="tag">'friends'</span>);
+			</code>
+			<code>
+				<span class="class">></span> <span class="tag">true</span>
+			</code>
+		</pre>
+	</section>
+	<section class="section">
+		<span class="title">removeAll</span>
+		<code class="method">Cabinet.session.removeAll();</code>
+		<pre class="markup">
+			<code>
+				Cabinet.session.<span class="class">removeAll</span>();
+			</code>
+			<code>
+				<span class="class">></span> <span class="tag">true</span>
+			</code>
+		</pre>
+	</section>
+	<section class="section">
+		<span class="title">keys</span>
+		<code class="method">Cabinet.session.keys();</code>
+		<pre class="markup">
+			<code>
+				Cabinet.session.<span class="class">keys</span>();
+			</code>
+			<code>
+				<span class="class">></span> <span class="tag">['friends']</span>
+			</code>
+		</pre>
+	</section>
+	<section class="section">
+		<span class="title">count</span>
+		<code class="method">Cabinet.session.count();</code>
+		<pre class="markup">
+			<code>
+				Cabinet.session.<span class="class">count</span>();
+			</code>
+			<code>
+				<span class="class">></span> <span class="tag">1</span>
+			</code>
+		</pre>
+	</section>
+
+	<h3>Demos</h3>
+
+	<section class="section">
+		<table class="demo-table">
+			<thead>
+				<tr>
+					<th>Local</th>
+					<th>Session</th>
+				</tr>
+			</thead>
+			<tobdy>
+				<tr>
+					<td>
+						<button id="demo-1" class="btn btn-success">Local Set</button>
+					</td>
+					<td>
+						<button id="demo-5" class="btn btn-success">Session Set</button>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<button id="demo-2" class="btn">Local Get</button>
+					</td>
+					<td>
+						<button id="demo-6" class="btn">Session Get</button>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<button id="demo-13" class="btn btn-alert">Local Remove</button>
+					</td>
+					<td>
+						<button id="demo-14" class="btn btn-alert">Session Remove</button>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<button id="demo-3" class="btn btn-alert">Local Remove All</button>
+					</td>
+					<td>
+						<button id="demo-10" class="btn btn-alert">Session Remove All</button>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<button id="demo-4" class="btn btn-primary">Local Get All</button>
+					</td>
+					<td>
+						<button id="demo-7" class="btn btn-primary">Session Get All</button>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<button id="demo-8" class="btn btn-primary">Local Keys</button>
+					</td>
+					<td>
+						<button id="demo-9" class="btn btn-primary">Session Keys</button>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<button id="demo-11" class="btn">Local Count</button>
+					</td>
+					<td>
+						<button id="demo-12" class="btn">Session Count</button>
+					</td>
+				</tr>
+			</tobdy>
+		</table>
+	</section>
 	
 </div><!--wrapper-->
 
