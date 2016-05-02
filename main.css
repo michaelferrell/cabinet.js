@@ -30,6 +30,11 @@ body {
 html {
 	font-size: 15px;
 }
+@media (max-width: 480px) {
+	html {
+		font-size: 14px;
+	}
+}
 body {
 	font-family: 'Open Sans', sans-serif;
 	color: #555;
