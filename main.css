@@ -46,24 +46,47 @@ p {
 	color: #555;
 	font-weight: 300;
 }
+.header {
+	background-color: #536dfe;
+	padding: 50px 0;
+    text-align: center;
+}
 .branding {
 	font-size: 2.9rem;
 	font-weight: 400;
-	margin: 60px 0 25px 0;
-    color: #222;
+	margin: 0 0 25px 0;
+    color: #fff;
 }
 .tagline {
 	font-size: 1.6rem;
 	line-height: 2rem;
 	font-weight: 300;
-    color: #7E8084;
-    margin-bottom: 50px;
+    color: #fff;
 }
 .logo {
-	width: 41px;
-	float: left;
-	margin-top: 1px;
-	margin-right: 8px;
+	width: 80px;
+	margin-bottom: 15px;
+}
+.btn-download {
+	display: block;
+	width: 200px;
+	margin: 0 auto;
+	border-radius: 4px;
+	padding: 20px 0;
+	background-color: none;
+	color: #fff;
+	text-decoration: none;
+	font-size: 1rem;
+	font-weight: 300;
+	text-transform: uppercase;
+	text-align: center;
+	margin-top: 30px;
+	border: 1px solid #fff;
+	outline: none;
+}
+.btn-download:hover {
+	background-color: #fff;
+	color: #536dfe;
 }
 .wrapper {
 	margin: 0 auto;
@@ -110,6 +133,15 @@ h3 {
 .section .description {
 	font-size: 1.2rem;
 	margin-top: 20px;
+}
+@media (max-width: 480px) {
+	.section .title {
+		display: block;
+		margin-bottom: 15px;
+	}
+	.section .method {
+		margin-left: 0px;
+	}
 }
 .btn {
 	font-size: 1rem;
@@ -174,7 +206,6 @@ h3 {
 .markup code {
 	font-family: monospace;
 	display: block;
-	color: #4f9fcf;
 	color: #555;
 	font-weight: 400;
 	font-size: .95rem;
@@ -203,6 +234,16 @@ h3 {
 	background-color: #f7f7f9;
 	border-radius: 3px;
 	font-size: 14px
+}
+@media (max-width: 480px) {
+	.markup {
+		border-left: 4px solid #DEDEDE;
+		margin-top: 20px;
+		padding: 10px 15px;
+	}
+	.markup code {
+		font-size: 1rem;
+	}
 }
 .demo-table {
     width: 100%;
