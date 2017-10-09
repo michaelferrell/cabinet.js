@@ -14,24 +14,15 @@
 }(this, function() {
 	'use strict';
 
-	var storageSupported = function() {
-		try {
-			var storage = window['localStorage'];
-			var check = 'supported';
-			storage.setItem(check, check);
-			storage.removeItem(check);
-			return true;
-		}
-		catch(e) {
-			return false;
-		}
-	}
+    var storageSupported = function() {
+        return (typeof window['localStorage'].setItem !== "function") ? false : true;
+    }
 
 	// not supported in this browser
 	if (!storageSupported()) return;
 
 	// Cache instances
-	var session_storage = sessionStorage; 
+	var session_storage = sessionStorage;
 	var local_storage   = localStorage;
 
 	var getType     = function(item) { return Object.prototype.toString.call(item); }
@@ -58,14 +49,14 @@
 
 	var StorageFactory = (function() {
 
-		var setInstance = function(type) {
+		var checkInstance = function(type) {
 			return type === 'session' ? session_storage : local_storage;
 		}
 
 		var Factory = {};
 
 		Factory.set = function(key, val) {
-			var storage = setInstance(arguments[2]);
+			var storage = checkInstance(arguments[2]);
 
 			if (typeof val === 'undefined')  {
 				invalidType();
@@ -89,7 +80,7 @@
 		}
 
 		Factory.get = function(key) {
-			var storage = setInstance(arguments[1]);
+			var storage = checkInstance(arguments[1]);
 			if (!isString(key)) {
 				invalidType();
 				return false;
@@ -98,11 +89,11 @@
 
 			return item !== null ? item.val : null;
 		}
-		
+
 		Factory.getAll = function() {
 			// either string 'session' or undefined
 			var arg     = arguments[0];
-			var storage = setInstance(arg);
+			var storage = checkInstance(arg);
 			var keys    = Object.keys(storage);
 			var items   = [];
 
@@ -116,12 +107,12 @@
 		}
 
 		Factory.keys = function() {
-			var storage = setInstance(arguments[0]);
+			var storage = checkInstance(arguments[0]);
 			return Object.keys(storage);
 		}
 
 		Factory.remove = function(key) {
-			var storage = setInstance(arguments[1]);
+			var storage = checkInstance(arguments[1]);
 			if (!isString(key)) {
 				invalidType();
 				return false;
@@ -131,13 +122,13 @@
 		}
 
 		Factory.removeAll = function() {
-			var storage = setInstance(arguments[0]);
+			var storage = checkInstance(arguments[0]);
 			storage.clear();
 			return true;
 		}
 
 		Factory.count = function() {
-			var storage = setInstance(arguments[0]);
+			var storage = checkInstance(arguments[0]);
 			return Object.keys(storage).length;
 		}
 
