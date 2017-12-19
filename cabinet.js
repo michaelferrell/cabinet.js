@@ -1,5 +1,5 @@
 /*!
-  * CabinetJS - copyright (c) Michael Ferrell 2016
+  * CabinetJS - copyright (c) Michael Ferrell 2016-2017
   * https://github.com/michaelferrell/cabinetjs
   * MIT license
   */
@@ -25,17 +25,18 @@
 	var session_storage = sessionStorage;
 	var local_storage   = localStorage;
 
-	var getType     = function(item) { return Object.prototype.toString.call(item); }
-	var isString    = function(str)  { return typeof str === 'string'; }
-	var isFunction  = function(fn)   { return typeof fn === 'function'; }
-	var isArray     = function(arr)  { return getType(arr) === '[object Array]' ? true : false; }
-	var isObject    = function(obj)  { return getType(obj) === '[object Object]' ? true : false; }
-	var isDate      = function(date) { return getType(date) === '[object Date]' ? true : false; }
-	var isNumber    = function(num)  { return getType(num) === '[object Number]' ? true : false; }
-	var isBool      = function(bool) { return getType(bool) === '[object Boolean]' ? true : false; }
-	var jstringify  = function(item) { return JSON.stringify(item); }
-	var jparse      = function(item) { return JSON.parse(item); }
-	var invalidType = function()     { throw new Error('Provided key is an invalid type.'); }
+	var getType      = function(item) { return Object.prototype.toString.call(item); }
+	var isString     = function(str)  { return typeof str === 'string'; }
+	var isFunction   = function(fn)   { return typeof fn === 'function'; }
+	var isArray      = function(arr)  { return getType(arr) === '[object Array]' ? true : false; }
+	var isObject     = function(obj)  { return getType(obj) === '[object Object]' ? true : false; }
+	var isDate       = function(date) { return getType(date) === '[object Date]' ? true : false; }
+	var isNumber     = function(num)  { return getType(num) === '[object Number]' ? true : false; }
+	var isBool       = function(bool) { return getType(bool) === '[object Boolean]' ? true : false; }
+	var jstringify   = function(item) { return JSON.stringify(item); }
+	var jparse       = function(item) { return JSON.parse(item); }
+	var invalidType  = function()     { throw new Error('Provided key is an invalid type.'); }
+	var isJsonString = function(str) { try { JSON.parse(str); } catch (e) { return false; } return true; }
 
 	// Constructor for a new entry
 	var Entry       = function(val) {
@@ -85,9 +86,16 @@
 				invalidType();
 				return false;
 			}
-			var item = JSON.parse(storage.getItem(key));
+			var val = null;
+			var item = storage.getItem(key);
+			if (item !== null && isJsonString(item)) {
+				item = JSON.parse(item);
+				val = item.hasOwnProperty('val') ? item.val : item;
+			} else if (isString(item)) {
+				val = item;
+			}
 
-			return item !== null ? item.val : null;
+			return val;
 		}
 
 		Factory.getAll = function() {
