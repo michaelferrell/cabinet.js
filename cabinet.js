@@ -1,5 +1,5 @@
 /*!
-  * CabinetJS - copyright (c) Michael Ferrell 2016
+  * CabinetJS - copyright (c) Michael Ferrell 2016-2017
   * https://github.com/michaelferrell/cabinetjs
   * MIT license
   */
