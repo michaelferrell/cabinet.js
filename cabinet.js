@@ -1,5 +1,5 @@
 /*!
-  * CabinetJS - copyright (c) Michael Ferrell 2016
+  * CabinetJS - copyright (c) Michael Ferrell 2016-2017
   * https://github.com/michaelferrell/cabinetjs
   * MIT license
   */
@@ -14,37 +14,29 @@
 }(this, function() {
 	'use strict';
 
-	var storageSupported = function() {
-		try {
-			var storage = window['localStorage'];
-			var check = 'supported';
-			storage.setItem(check, check);
-			storage.removeItem(check);
-			return true;
-		}
-		catch(e) {
-			return false;
-		}
-	}
+    var storageSupported = function() {
+        return (typeof window['localStorage'].setItem !== "function") ? false : true;
+    }
 
 	// not supported in this browser
 	if (!storageSupported()) return;
 
 	// Cache instances
-	var session_storage = sessionStorage; 
+	var session_storage = sessionStorage;
 	var local_storage   = localStorage;
 
-	var getType     = function(item) { return Object.prototype.toString.call(item); }
-	var isString    = function(str)  { return typeof str === 'string'; }
-	var isFunction  = function(fn)   { return typeof fn === 'function'; }
-	var isArray     = function(arr)  { return getType(arr) === '[object Array]' ? true : false; }
-	var isObject    = function(obj)  { return getType(obj) === '[object Object]' ? true : false; }
-	var isDate      = function(date) { return getType(date) === '[object Date]' ? true : false; }
-	var isNumber    = function(num)  { return getType(num) === '[object Number]' ? true : false; }
-	var isBool      = function(bool) { return getType(bool) === '[object Boolean]' ? true : false; }
-	var jstringify  = function(item) { return JSON.stringify(item); }
-	var jparse      = function(item) { return JSON.parse(item); }
-	var invalidType = function()     { throw new Error('Provided key is an invalid type.'); }
+	var getType      = function(item) { return Object.prototype.toString.call(item); }
+	var isString     = function(str)  { return typeof str === 'string'; }
+	var isFunction   = function(fn)   { return typeof fn === 'function'; }
+	var isArray      = function(arr)  { return getType(arr) === '[object Array]' ? true : false; }
+	var isObject     = function(obj)  { return getType(obj) === '[object Object]' ? true : false; }
+	var isDate       = function(date) { return getType(date) === '[object Date]' ? true : false; }
+	var isNumber     = function(num)  { return getType(num) === '[object Number]' ? true : false; }
+	var isBool       = function(bool) { return getType(bool) === '[object Boolean]' ? true : false; }
+	var jstringify   = function(item) { return JSON.stringify(item); }
+	var jparse       = function(item) { return JSON.parse(item); }
+	var invalidType  = function()     { throw new Error('Provided key is an invalid type.'); }
+	var isJsonString = function(str) { try { JSON.parse(str); } catch (e) { return false; } return true; }
 
 	// Constructor for a new entry
 	var Entry       = function(val) {
@@ -58,14 +50,14 @@
 
 	var StorageFactory = (function() {
 
-		var setInstance = function(type) {
+		var checkInstance = function(type) {
 			return type === 'session' ? session_storage : local_storage;
 		}
 
 		var Factory = {};
 
 		Factory.set = function(key, val) {
-			var storage = setInstance(arguments[2]);
+			var storage = checkInstance(arguments[2]);
 
 			if (typeof val === 'undefined')  {
 				invalidType();
@@ -89,20 +81,27 @@
 		}
 
 		Factory.get = function(key) {
-			var storage = setInstance(arguments[1]);
+			var storage = checkInstance(arguments[1]);
 			if (!isString(key)) {
 				invalidType();
 				return false;
 			}
-			var item = JSON.parse(storage.getItem(key));
+			var val = null;
+			var item = storage.getItem(key);
+			if (item !== null && isJsonString(item)) {
+				item = JSON.parse(item);
+				val = item.hasOwnProperty('val') ? item.val : item;
+			} else if (isString(item)) {
+				val = item;
+			}
 
-			return item !== null ? item.val : null;
+			return val;
 		}
-		
+
 		Factory.getAll = function() {
 			// either string 'session' or undefined
 			var arg     = arguments[0];
-			var storage = setInstance(arg);
+			var storage = checkInstance(arg);
 			var keys    = Object.keys(storage);
 			var items   = [];
 
@@ -116,12 +115,12 @@
 		}
 
 		Factory.keys = function() {
-			var storage = setInstance(arguments[0]);
+			var storage = checkInstance(arguments[0]);
 			return Object.keys(storage);
 		}
 
 		Factory.remove = function(key) {
-			var storage = setInstance(arguments[1]);
+			var storage = checkInstance(arguments[1]);
 			if (!isString(key)) {
 				invalidType();
 				return false;
@@ -131,13 +130,13 @@
 		}
 
 		Factory.removeAll = function() {
-			var storage = setInstance(arguments[0]);
+			var storage = checkInstance(arguments[0]);
 			storage.clear();
 			return true;
 		}
 
 		Factory.count = function() {
-			var storage = setInstance(arguments[0]);
+			var storage = checkInstance(arguments[0]);
 			return Object.keys(storage).length;
 		}
 
