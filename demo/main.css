@@ -1,19 +1,84 @@
-/***********************
- * Reset
- */
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed,
-figure, figcaption, footer, header, hgroup,
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
 	margin: 0;
 	padding: 0;
 	border: 0;
@@ -33,6 +98,11 @@ body {
 html {
 	font-size: 15px;
 }
+@media (max-width: 480px) {
+	html {
+		font-size: 14px;
+	}
+}
 body {
 	font-family: 'Open Sans', sans-serif;
 	color: #555;
@@ -44,24 +114,49 @@ p {
 	color: #555;
 	font-weight: 300;
 }
+.header {
+	background-color: #536dfe;
+	background-image: url('purple-lines-2.png');
+	background-size: 100%;
+	padding: 100px 0;
+	text-align: center;
+}
 .branding {
 	font-size: 2.9rem;
 	font-weight: 400;
-	margin: 60px 0 25px 0;
-    color: #222;
+	margin: 0 0 25px 0;
+	color: #fff;
 }
 .tagline {
 	font-size: 1.6rem;
 	line-height: 2rem;
 	font-weight: 300;
-    color: #7E8084;
-    margin-bottom: 50px;
+	color: #fff;
 }
 .logo {
-	width: 41px;
-	float: left;
-	margin-top: 1px;
-	margin-right: 8px;
+	width: 80px;
+	margin-bottom: 15px;
+}
+.btn-download {
+	display: block;
+	width: 200px;
+	margin: 0 auto;
+	border-radius: 4px;
+	padding: 20px 0;
+	background-color: none;
+	color: #fff;
+	text-decoration: none;
+	font-size: 1rem;
+	font-weight: 300;
+	text-transform: uppercase;
+	text-align: center;
+	margin-top: 30px;
+	border: 1px solid #fff;
+	outline: none;
+}
+.btn-download:hover {
+	background-color: #fff;
+	color: #2a2730;
 }
 .wrapper {
 	margin: 0 auto;
@@ -84,10 +179,10 @@ p {
 	}
 }
 h3 {
-	font-size: 1.6rem;
-	color: #333;
-	font-weight: 400;
-	margin-top: 20px;
+	font-size: 1.5rem;
+	color: #2a2730;
+	font-weight: 600;
+	margin-top: 40px;
 }
 .section {
 	margin-top: 30px;
@@ -104,15 +199,25 @@ h3 {
 	margin-left: 30px;
 	color: #777;
 }
+.overview,
 .section .description {
 	font-size: 1.2rem;
 	margin-top: 20px;
+}
+@media (max-width: 480px) {
+	.section .title {
+		display: block;
+		margin-bottom: 15px;
+	}
+	.section .method {
+		margin-left: 0px;
+	}
 }
 .btn {
 	font-size: 1rem;
 	border: 1px solid #ddd;
 	color: #666;
-    background: #E6E6E6;
+	background: #e6e6e6;
 	font-size: 300;
 	padding: 10px 20px;
 	outline: none;
@@ -125,37 +230,37 @@ h3 {
 .btn.btn-primary {
 	background-color: #536dfe;
 	color: #fff;
-	border-color: #4F67F1;
+	border-color: #4f67f1;
 }
 .btn.btn-primary:hover {
-	background-color: #4F67F1;
+	background-color: #4f67f1;
 }
 .btn.btn-alert {
 	background-color: #e51c23;
 	color: #fff;
-	border-color: #D81B22;
+	border-color: #d81b22;
 }
 .btn.btn-alert:hover {
-	background-color: #D81B22;
+	background-color: #d81b22;
 }
 .btn.btn-success {
 	background-color: #259b24;
 	color: #fff;
-	border-color: #228A21;
+	border-color: #228a21;
 }
 .btn.btn-success:hover {
-	background-color: #228A21;
+	background-color: #228a21;
 }
 .btn.btn-warning {
 	background-color: #ff9800;
 	color: #fff;
 }
 .markup {
-	background-color: rgba(0,0,0,.015);
-	border-left: 6px solid #DEDEDE;
+	background-color: rgba(0, 0, 0, 0.015);
+	border-left: 6px solid #dedede;
 	font-size: 1.1rem;
-    color: #666;
-    font-weight: 600;
+	color: #666;
+	font-weight: 600;
 	margin-top: 20px;
 	word-break: normal;
 	white-space: normal;
@@ -171,14 +276,12 @@ h3 {
 .markup code {
 	font-family: monospace;
 	display: block;
-	color: #4f9fcf;
 	color: #555;
 	font-weight: 400;
-	font-size: .95rem;
-	margin-top: -2px;
+	font-size: 0.95rem;
 }
 .markup .comment {
-	color: #AFAFAF;
+	color: #afafaf;
 }
 .markup .comment:first-child {
 	margin-top: 0;
@@ -186,7 +289,7 @@ h3 {
 .markup .tag,
 .solo-tag {
 	font-family: monospace;
-	color: #000080
+	color: #000080;
 }
 .markup .class,
 .solo-class {
@@ -200,15 +303,25 @@ h3 {
 .solo-tag {
 	background-color: #f7f7f9;
 	border-radius: 3px;
-	font-size: 14px
+	font-size: 14px;
+}
+@media (max-width: 480px) {
+	.markup {
+		border-left: 4px solid #dedede;
+		margin-top: 20px;
+		padding: 10px 15px;
+	}
+	.markup code {
+		font-size: 1rem;
+	}
 }
 .demo-table {
-    width: 100%;
-    max-width: 100%;
+	width: 100%;
+	max-width: 100%;
 	border: 1px solid #ddd;
-    border-spacing: 0;
-    border-collapse: collapse;
-    margin-top: 30px;
+	border-spacing: 0;
+	border-collapse: collapse;
+	margin-top: 30px;
 }
 .demo-table th {
 	width: 300px;
@@ -221,7 +334,20 @@ h3 {
 .demo-table td {
 	text-align: center;
 	border: 1px solid #ddd;
-    padding: 8px;
-    line-height: 1.42857143;
-    vertical-align: top;
+	padding: 8px;
+	line-height: 1.42857143;
+	vertical-align: top;
+}
+.footer {
+	text-align: center;
+	background-color: #2a2730;
+	margin-top: 20px;
+	padding: 30px 0;
+}
+.footer .footer-copy {
+	color: #ccc;
+	font-weight: 300;
+}
+.footer .footer-copy a {
+	color: #ccc;
 }
