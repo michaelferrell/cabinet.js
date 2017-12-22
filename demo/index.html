@@ -1,0 +1,461 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cabinet JS</title>
+<meta name="description" content="A simple and convenient interface for accessing local and session storage." />
+<meta charset="utf-8" />
+<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
+ <link rel="stylesheet" type="text/css" href="main.css">
+</head>
+<body>
+<header class="header">
+  <div class="wrapper">
+    <img src="logo-white.png" class="logo" />
+    <h1 class="branding">Cabinet JS</h1>
+    <h2 class="tagline">A simple interface for accessing local and session storage</h2>
+    <a href="cabinet.js" class="btn-download">Download Cabinet</a>
+  </div>
+</header>
+<div class="wrapper">
+  <h3>LocalStorage API Reference</h3>
+  <p class="overview">Data stored in localStorage has no expiration time.</p>
+  <section class="section">
+    <span class="title">set</span>
+    <code class="method">Cabinet.set(key, data);</code>
+    <p class="description">Set a key to a particular value. Available types includes strings, numbers, booleans, arrays, objects, collections, and dates.</p>
+    <pre class="markup">
+      <div class="group">
+        <code>
+          Cabinet.<span class="class">set</span>(<span class="tag">'dog'</span>, <span class="tag">'Scooby'</span>); <span class="comment">// Saving Strings</span>
+        </code>
+      </div><!--/group-->
+
+      <div class="group">
+        <code>
+          Cabinet.<span class="class">set</span>(<span class="tag">'algebra'</span>, <span class="tag">50/(10-5)</span>); <span class="comment">// Saving Numbers</span>
+        </code>
+      </div><!--/group-->
+
+      <div class="group">
+        <code>
+          Cabinet.<span class="class">set</span>(<span class="tag">'person'</span>, {name: <span class="tag">"Michael"</span>, age: <span class="tag">26</span>, gender: <span class="tag">"Male"</span>}); <span class="comment">// Saving Objects</span>
+        </code>
+      </div><!--/group-->
+
+      <div class="group">
+        <code>
+          Cabinet.<span class="class">set</span>(<span class="tag">'animals'</span>, [<span class="tag">'lion'</span>, <span class="tag">'tiger'</span>, <span class="tag">'bear'</span>]); <span class="comment">// Saving Arrays</span>
+        </code>
+      </div><!--/group-->
+
+      <div class="group">
+        <code>
+          Cabinet.<span class="class">set</span>(<span class="tag">'friends'</span>, [{name: <span class="tag">"Jack"</span>}, {name: <span class="tag">"Iris"</span>}]); <span class="comment">// Saving Collections</span>
+        </code>
+      </div><!--/group-->
+
+      <div class="group">
+        <code>
+          Cabinet.<span class="class">set</span>(<span class="tag">'check'</span>, <span class="tag">true</span>); <span class="comment">// Saving Booleans</span>
+        </code>
+      </div><!--/group-->
+
+      <div class="group">
+        <code>
+          Cabinet.<span class="class">set</span>(<span class="tag">'reminder'</span>, <span class="class">new</span> Date(<span class="tag">2006</span>, <span class="tag">0</span>, <span class="tag">2</span>, <span class="tag">15</span>, <span class="tag">4</span>, <span class="tag">5</span>)); <span class="comment">// Saving Dates</span>
+        </code>
+      </div><!--/group-->
+    </pre>
+  </section>
+
+  <section class="section">
+    <span class="title">get</span>
+    <code class="method">Cabinet.get(key);</code>
+    <p class="description">Returns the saved value for a given key.</p>
+    <pre class="markup">
+      <div class="group">
+        <code>
+          Cabinet.<span class="class">get</span>(<span class="tag">'dog'</span>);
+        </code>
+        <code>
+          <span class="class">></span> <span class="tag">"Scooby"</span>
+        </code>
+      </div><!--/group-->
+
+      <div class="group">
+        <code>
+          Cabinet.<span class="class">get</span>(<span class="tag">'algebra'</span>);
+        </code>
+        <code>
+          <span class="class">></span> <span class="tag">10</span>
+        </code>
+      </div><!--/group-->
+
+      <div class="group">
+        <code>
+          Cabinet.<span class="class">get</span>(<span class="tag">'person'</span>);
+        </code>
+        <code>
+          <span class="class">></span> {name: <span class="tag">"Michael"</span>, age: <span class="tag">26</span>, location: <span class="tag">"Bellingham, WA"</span>}
+        </code>
+      </div><!--/group-->
+    </pre>
+  </section>
+
+  <section class="section">
+    <span class="title">getAll</span>
+    <code class="method">Cabinet.getAll();</code>
+    <p class="description">Returns all saved values and objects in an array.</p>
+    <pre class="markup">
+      <code>
+        Cabinet.<span class="class">getAll</span>();
+      </code>
+    </pre>
+  </section>
+
+  <section class="section">
+    <span class="title">remove</span>
+    <code class="method">Cabinet.remove(key);</code>
+    <p class="description">Removes a saved value for the given key.</p>
+    <pre class="markup">
+      <code>
+        Cabinet.<span class="class">remove</span>(key);
+      </code>
+    </pre>
+  </section>
+
+  <section class="section">
+    <span class="title">removeAll</span>
+    <code class="method">Cabinet.removeAll();</code>
+    <p class="description">Removes all saved values and objects</p>
+    <pre class="markup">
+      <code>
+        Cabinet.<span class="class">removeAll</span>();
+      </code>
+    </pre>
+  </section>
+
+
+  <section class="section">
+    <span class="title">keys</span>
+    <code class="method">Cabinet.keys();</code>
+    <p class="description">Returns an array of keys.</p>
+    <pre class="markup">
+      <code>
+        Cabinet.<span class="class">keys</span>();
+      </code>
+      <code>
+        <span class="class">></span> [<span class="tag">'dog'</span>, <span class="tag">'algebra'</span>, <span class="tag">'person'</span>, <span class="tag">'animals'</span>, <span class="tag">'friends'</span>, <span class="tag">'check'</span>, <span class="tag">'reminder'</span>]
+      </code>
+    </pre>
+  </section>
+
+
+  <section class="section">
+    <span class="title">count</span>
+    <code class="method">Cabinet.count();</code>
+    <p class="description">Returns the number of keys.</p>
+    <pre class="markup">
+      <code>
+        Cabinet.<span class="class">count</span>();
+      </code>
+      <code>
+        <span class="class">></span> <span class="tag">7</span>
+      </code>
+    </pre>
+  </section>
+
+
+  <h3>Session Storage API Reference</h3>
+
+  <p class="overview">Data stored in sessionStorage gets cleared when the page session ends, that is, the duration that the browser is open.</p>
+  <p class="overview">Accessing the session storage interface is as simple as calling the same methods on <strong>cabinet.session</strong></p>
+  <section class="section">
+    <span class="title">set</span>
+    <code class="method">Cabinet.session.set(key, data);</code>
+    <pre class="markup">
+      <code>
+        Cabinet.session.<span class="class">set</span>(<span class="tag">'friends'</span>, [{name: <span class="tag">"Jack"</span>}, {name: <span class="tag">"Iris"</span>}, {name: <span class="tag">"Jared"</span>}]);
+      </code>
+    </pre>
+  </section>
+  <section class="section">
+    <span class="title">get</span>
+    <code class="method">Cabinet.session.get(key);</code>
+    <pre class="markup">
+      <code>
+        Cabinet.session.<span class="class">get</span>(<span class="tag">'friends'</span>);
+      </code>
+      <code>
+        <span class="class">></span> [{name: <span class="tag">"Jack"</span>}, {name: <span class="tag">"Iris"</span>}, {name: <span class="tag">"Jared"</span>}]
+      </code>
+    </pre>
+  </section>
+  <section class="section">
+    <span class="title">getAll</span>
+    <code class="method">Cabinet.session.getAll();</code>
+    <pre class="markup">
+      <code>
+        Cabinet.session.<span class="class">getAll</span>();
+      </code>
+    </pre>
+  </section>
+  <section class="section">
+    <span class="title">remove</span>
+    <code class="method">Cabinet.session.remove(key);</code>
+    <pre class="markup">
+      <code>
+        Cabinet.session.<span class="class">remove</span>(<span class="tag">'friends'</span>);
+      </code>
+    </pre>
+  </section>
+  <section class="section">
+    <span class="title">removeAll</span>
+    <code class="method">Cabinet.session.removeAll();</code>
+    <pre class="markup">
+      <code>
+        Cabinet.session.<span class="class">removeAll</span>();
+      </code>
+    </pre>
+  </section>
+  <section class="section">
+    <span class="title">keys</span>
+    <code class="method">Cabinet.session.keys();</code>
+    <pre class="markup">
+      <code>
+        Cabinet.session.<span class="class">keys</span>();
+      </code>
+      <code>
+        <span class="class">></span> <span class="tag">['friends']</span>
+      </code>
+    </pre>
+  </section>
+  <section class="section">
+    <span class="title">count</span>
+    <code class="method">Cabinet.session.count();</code>
+    <pre class="markup">
+      <code>
+        Cabinet.session.<span class="class">count</span>();
+      </code>
+      <code>
+        <span class="class">></span> <span class="tag">1</span>
+      </code>
+    </pre>
+  </section>
+
+  <h3>Demos</h3>
+  <p class="overview">Demos below will set data in session and local storage. To view the saved data, open up the JavaScript console</p>
+  <section class="section">
+    <table class="demo-table">
+      <thead>
+        <tr>
+          <th>Local</th>
+          <th>Session</th>
+        </tr>
+      </thead>
+      <tobdy>
+        <tr>
+          <td>
+            <button id="demo-1" class="btn btn-success">Local Set</button>
+          </td>
+          <td>
+            <button id="demo-5" class="btn btn-success">Session Set</button>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <button id="demo-2" class="btn">Local Get</button>
+          </td>
+          <td>
+            <button id="demo-6" class="btn">Session Get</button>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <button id="demo-13" class="btn btn-alert">Local Remove</button>
+          </td>
+          <td>
+            <button id="demo-14" class="btn btn-alert">Session Remove</button>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <button id="demo-3" class="btn btn-alert">Local Remove All</button>
+          </td>
+          <td>
+            <button id="demo-10" class="btn btn-alert">Session Remove All</button>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <button id="demo-4" class="btn btn-primary">Local Get All</button>
+          </td>
+          <td>
+            <button id="demo-7" class="btn btn-primary">Session Get All</button>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <button id="demo-8" class="btn btn-primary">Local Keys</button>
+          </td>
+          <td>
+            <button id="demo-9" class="btn btn-primary">Session Keys</button>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <button id="demo-11" class="btn">Local Count</button>
+          </td>
+          <td>
+            <button id="demo-12" class="btn">Session Count</button>
+          </td>
+        </tr>
+      </tobdy>
+    </table>
+  </section>
+
+</div><!--wrapper-->
+
+<footer class="footer">
+  <p class="footer-copy">Michael Ferrell &copy 2016</p>
+  <p class="footer-copy">Made in <a href="http://michaelferrell.github.io/">cool places</a></p>
+</footer>
+
+<script type="text/javascript" src="../dist/cabinet.js"></script>
+
+<script type="text/javascript">
+(function (name, context, definition) {
+  context[name] = definition()
+})('Melon', this, function (name, context) {
+  name    = name    || 'melon'
+  context = context || this;
+  var Utility = (function() {
+
+    var strToArr = function(str, d) {
+      return str.split(d || ' ');
+    }
+
+    return {
+      'strToArr': strToArr
+    }
+  })();
+  var melon = {};
+  function addListener(elem, type, fn) {
+    elem.addEventListener(type, fn, false);
+  }
+  function removeListener(elem, type, fn) {
+    elem.removeEventListener(type, fn, false)
+  }
+  melon.on = function(events, elem, fn) {
+    var events = Utility.strToArr(events);
+    for (var i = 0; i < events.length; i++) {
+      var ev = events[i];
+      addListener(elem, ev, fn);
+    }
+  }
+  melon.off = function(event, elem, fn) {
+    if (typeof fn === 'function') {
+      removeListener(elem, event, fn);
+    }
+  }
+  return melon;
+});
+
+
+var btn  = document.getElementById('demo-1');
+var btn2 = document.getElementById('demo-2');
+var btn3 = document.getElementById('demo-3');
+var btn4 = document.getElementById('demo-4');
+var btn5 = document.getElementById('demo-5');
+var btn6 = document.getElementById('demo-6');
+var btn7 = document.getElementById('demo-7');
+var btn8 = document.getElementById('demo-8');
+var btn9 = document.getElementById('demo-9');
+var btn10 = document.getElementById('demo-10');
+var btn11 = document.getElementById('demo-11');
+var btn12 = document.getElementById('demo-12');
+var btn13 = document.getElementById('demo-13');
+var btn14 = document.getElementById('demo-14');
+
+Melon.on('click', btn, function() {
+  // var set = Cabinet.set('dog', 'bark');
+  // var set = Cabinet.set('algebra', 1+3);
+  var set = Cabinet.set(null, 'so null');
+  // var set = Cabinet.set('dog', true);
+  // var set = Cabinet.set('person', {name:'michael', age: 25});
+  var set = Cabinet.set('friends', [{friend:'paul'},{friend:'jack'},{friend:'george'}]);
+  // var set = Cabinet.set('dog', ['cat', 'dog', 'reet']);
+  var set = Cabinet.set('dog', new Date(2006, 0, 2, 15, 4, 5));
+});
+
+Melon.on('click', btn2, function() {
+  var item = Cabinet.get('person');
+  console.log('------')
+  console.log(item)
+});
+
+Melon.on('click', btn3, function() {
+  Cabinet.removeAll();
+});
+
+Melon.on('click', btn4, function() {
+  var items = Cabinet.getAll();
+  for (var i = 0; i < items.length; i++) {
+    console.log(items[i])
+  }
+});
+
+Melon.on('click', btn8, function() {
+  var items = Cabinet.keys();
+  console.log(items)
+});
+
+Melon.on('click', btn5, function() {
+  Cabinet.session.set('rapper', {name:'drake', age: 29});
+  Cabinet.session.set('singer', {name:'Chris Brown', age: 26});
+});
+
+Melon.on('click', btn6, function() {
+  var set = Cabinet.session.get('rapper');
+  console.log(set)
+});
+
+Melon.on('click', btn10, function() {
+  Cabinet.session.removeAll();
+});
+
+Melon.on('click', btn7, function() {
+  var items = Cabinet.session.getAll();
+  for (var i = 0; i < items.length; i++) {
+    console.log(items[i]);
+  }
+});
+
+Melon.on('click', btn9, function() {
+  var items = Cabinet.session.keys();
+  console.log(items)
+});
+
+Melon.on('click', btn11, function() {
+  var count = Cabinet.count();
+  console.log(count)
+});
+
+Melon.on('click', btn12, function() {
+  var count = Cabinet.session.count();
+  console.log(count)
+});
+
+Melon.on('click', btn13, function() {
+  Cabinet.remove('person');
+});
+
+Melon.on('click', btn14, function() {
+  Cabinet.session.remove('rapper');
+});
+
+</script>
+</body>
