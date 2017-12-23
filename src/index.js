@@ -1,5 +1,3 @@
-"use strict"
-
 import StorageFactory from "./StorageFactory"
 import { storageSupported } from "./utilities"
 
