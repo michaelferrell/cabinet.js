@@ -1,8 +1,15 @@
+"use strict"
+
 import StorageFactory from "./StorageFactory"
 import { storageSupported } from "./utilities"
 
+let Cabinet
+
 if (storageSupported()) {
-  const cabinet = new StorageFactory("local")
-  cabinet.session = new StorageFactory("session")
-  window.Cabinet = cabinet
+  Cabinet = new StorageFactory("local")
+  Cabinet.session = new StorageFactory("session")
+} else {
+  console.error("cabinet.js: local storage not supported")
 }
+
+export default Cabinet

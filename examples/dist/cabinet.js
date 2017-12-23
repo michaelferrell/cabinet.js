@@ -1,4 +1,15 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
+"use strict";
+
+var _index = require("./../../src/index.js");
+
+var _index2 = _interopRequireDefault(_index);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+console.log(_index2.default);
+
+},{"./../../src/index.js":4}],2:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -19,7 +30,7 @@ var Entry = function Entry(val) {
 
 exports.default = Entry;
 
-},{"./utilities":4}],2:[function(require,module,exports){
+},{"./utilities":5}],3:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -109,7 +120,7 @@ var StorageFactory = function StorageFactory(storageType) {
 
 exports.default = StorageFactory;
 
-},{"./Entry":1,"./utilities":4}],3:[function(require,module,exports){
+},{"./Entry":2,"./utilities":5}],4:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -124,18 +135,18 @@ var _utilities = require("./utilities");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var cabinet = void 0;
+var Cabinet = void 0;
 
 if ((0, _utilities.storageSupported)()) {
-  cabinet = new _StorageFactory2.default("local");
-  cabinet.session = new _StorageFactory2.default("session");
+  Cabinet = new _StorageFactory2.default("local");
+  Cabinet.session = new _StorageFactory2.default("session");
 } else {
   console.error("cabinet.js: local storage not supported");
 }
 
-exports.default = cabinet;
+exports.default = Cabinet;
 
-},{"./StorageFactory":2,"./utilities":4}],4:[function(require,module,exports){
+},{"./StorageFactory":3,"./utilities":5}],5:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -197,4 +208,4 @@ var isValidValue = exports.isValidValue = function isValidValue(val) {
   return isString(val) || isArray(val) || isObject(val) || isDate(val) || isNumber(val) || isBool(val);
 };
 
-},{}]},{},[3]);
+},{}]},{},[1]);

@@ -3,10 +3,13 @@
   "version": "0.0.1",
   "description": "A simple interface for accessing local and session storage",
   "main": "dist/cabinet.js",
-  "files": ["dist/"],
+  "files": [
+    "dist/"
+  ],
   "scripts": {
     "build": "grunt",
-    "dev": "grunt watch"
+    "predev": "grunt --gruntfile Gruntfile-examples.js",
+    "dev": "grunt --gruntfile Gruntfile-examples.js watch"
   },
   "repository": {
     "type": "git",
