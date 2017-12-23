@@ -1,8 +1,9 @@
 {
-  "name": "cabinetjs",
-  "version": "1.0.0",
+  "name": "cabinet-storage",
+  "version": "0.0.1",
   "description": "A simple interface for accessing local and session storage",
-  "main": "index.js",
+  "main": "dist/cabinet.js",
+  "files": ["dist/"],
   "scripts": {
     "build": "grunt",
     "dev": "grunt watch"
