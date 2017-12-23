@@ -7,4 +7,4 @@ API Documentation here: Coming soon
 ### Implementation Example
 ```js
 // import the Cabinet module
-import Cabinet from 'cabinet'
+import Cabinet from './Cabinet'
