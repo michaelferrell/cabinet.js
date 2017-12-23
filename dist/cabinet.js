@@ -131,55 +131,59 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 var storageSupported = exports.storageSupported = function storageSupported() {
-  return typeof window['localStorage'].setItem !== 'function' ? false : true;
+  return window.localStorage && isFunction(window.localStorage.setItem);
 };
-var getType = exports.getType = function getType(item) {
-  return Object.prototype.toString.call(item);
+
+var getType = exports.getType = function getType(obj) {
+  return {}.toString.call(obj).match(/\s([a-zA-Z]+)/)[1].toLowerCase();
 };
+
+//type checks
 var isString = exports.isString = function isString(str) {
-  return typeof str === 'string';
+  return getType(str) === 'string';
 };
 var isFunction = exports.isFunction = function isFunction(fn) {
-  return typeof fn === 'function';
+  return getType(fn) === 'function';
 };
 var isArray = exports.isArray = function isArray(arr) {
-  return getType(arr) === '[object Array]' ? true : false;
+  return getType(arr) === 'array';
 };
 var isObject = exports.isObject = function isObject(obj) {
-  return getType(obj) === '[object Object]' ? true : false;
+  return getType(obj) === 'object';
 };
 var isDate = exports.isDate = function isDate(date) {
-  return getType(date) === '[object Date]' ? true : false;
+  return getType(date) === 'date';
 };
 var isNumber = exports.isNumber = function isNumber(num) {
-  return getType(num) === '[object Number]' ? true : false;
+  return getType(num) === 'number';
 };
 var isBool = exports.isBool = function isBool(bool) {
-  return getType(bool) === '[object Boolean]' ? true : false;
+  return getType(bool) === 'boolean';
 };
+
+//serialization
 var jstringify = exports.jstringify = function jstringify(item) {
   return JSON.stringify(item);
 };
 var jparse = exports.jparse = function jparse(item) {
   return JSON.parse(item);
 };
+
 var invalidType = exports.invalidType = function invalidType() {
   throw new Error('Provided key is an invalid type.');
 };
+
 var isJsonString = exports.isJsonString = function isJsonString(str) {
   try {
-    JSON.parse(str);
+    jparse(str);
   } catch (e) {
     return false;
   }
   return true;
 };
+
 var isValidValue = exports.isValidValue = function isValidValue(val) {
-  if (isString(val) || isArray(val) || isObject(val) || isDate(val) || isNumber(val) || isBool(val)) {
-    return true;
-  } else {
-    return false;
-  }
+  return isString(val) || isArray(val) || isObject(val) || isDate(val) || isNumber(val) || isBool(val);
 };
 
 },{}]},{},[3]);
