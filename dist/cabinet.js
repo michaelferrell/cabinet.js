@@ -1,9 +1,11 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
-"use strict";
+'use strict';
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+
+var _utilities = require('./utilities');
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -11,13 +13,13 @@ var Entry = function Entry(val) {
   _classCallCheck(this, Entry);
 
   this.val = val;
-  this.type = Object.prototype.toString.call(val);
+  this.type = (0, _utilities.getType)(val);
   this.dateCreated = new Date();
 };
 
 exports.default = Entry;
 
-},{}],2:[function(require,module,exports){
+},{"./utilities":4}],2:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -108,21 +110,30 @@ var StorageFactory = function StorageFactory(storageType) {
 exports.default = StorageFactory;
 
 },{"./Entry":1,"./utilities":4}],3:[function(require,module,exports){
-'use strict';
+"use strict";
 
-var _StorageFactory = require('./StorageFactory');
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _StorageFactory = require("./StorageFactory");
 
 var _StorageFactory2 = _interopRequireDefault(_StorageFactory);
 
-var _utilities = require('./utilities');
+var _utilities = require("./utilities");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+var cabinet = void 0;
+
 if ((0, _utilities.storageSupported)()) {
-  var cabinet = new _StorageFactory2.default('local');
-  cabinet.session = new _StorageFactory2.default('session');
-  window.Cabinet = cabinet;
+  cabinet = new _StorageFactory2.default("local");
+  cabinet.session = new _StorageFactory2.default("session");
+} else {
+  console.error("cabinet.js: local storage not supported");
 }
+
+exports.default = cabinet;
 
 },{"./StorageFactory":2,"./utilities":4}],4:[function(require,module,exports){
 'use strict';
@@ -131,55 +142,59 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 var storageSupported = exports.storageSupported = function storageSupported() {
-  return typeof window['localStorage'].setItem !== 'function' ? false : true;
+  return window.localStorage && isFunction(window.localStorage.setItem);
 };
-var getType = exports.getType = function getType(item) {
-  return Object.prototype.toString.call(item);
+
+var getType = exports.getType = function getType(obj) {
+  return {}.toString.call(obj).match(/\s([a-zA-Z]+)/)[1].toLowerCase();
 };
+
+//type checks
 var isString = exports.isString = function isString(str) {
-  return typeof str === 'string';
+  return getType(str) === 'string';
 };
 var isFunction = exports.isFunction = function isFunction(fn) {
-  return typeof fn === 'function';
+  return getType(fn) === 'function';
 };
 var isArray = exports.isArray = function isArray(arr) {
-  return getType(arr) === '[object Array]' ? true : false;
+  return getType(arr) === 'array';
 };
 var isObject = exports.isObject = function isObject(obj) {
-  return getType(obj) === '[object Object]' ? true : false;
+  return getType(obj) === 'object';
 };
 var isDate = exports.isDate = function isDate(date) {
-  return getType(date) === '[object Date]' ? true : false;
+  return getType(date) === 'date';
 };
 var isNumber = exports.isNumber = function isNumber(num) {
-  return getType(num) === '[object Number]' ? true : false;
+  return getType(num) === 'number';
 };
 var isBool = exports.isBool = function isBool(bool) {
-  return getType(bool) === '[object Boolean]' ? true : false;
+  return getType(bool) === 'boolean';
 };
+
+//serialization
 var jstringify = exports.jstringify = function jstringify(item) {
   return JSON.stringify(item);
 };
 var jparse = exports.jparse = function jparse(item) {
   return JSON.parse(item);
 };
+
 var invalidType = exports.invalidType = function invalidType() {
-  throw new Error('Provided key is an invalid type.');
+  throw new Error("Provided key is an invalid type.");
 };
+
 var isJsonString = exports.isJsonString = function isJsonString(str) {
   try {
-    JSON.parse(str);
+    jparse(str);
   } catch (e) {
     return false;
   }
   return true;
 };
+
 var isValidValue = exports.isValidValue = function isValidValue(val) {
-  if (isString(val) || isArray(val) || isObject(val) || isDate(val) || isNumber(val) || isBool(val)) {
-    return true;
-  } else {
-    return false;
-  }
+  return isString(val) || isArray(val) || isObject(val) || isDate(val) || isNumber(val) || isBool(val);
 };
 
 },{}]},{},[3]);

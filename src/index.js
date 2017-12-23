@@ -3,13 +3,13 @@
 import StorageFactory from "./StorageFactory"
 import { storageSupported } from "./utilities"
 
-let cabinet
+let Cabinet
 
 if (storageSupported()) {
-  cabinet = new StorageFactory("local")
-  cabinet.session = new StorageFactory("session")
+  Cabinet = new StorageFactory("local")
+  Cabinet.session = new StorageFactory("session")
 } else {
   console.error("cabinet.js: local storage not supported")
 }
 
-export default cabinet
+export default Cabinet
