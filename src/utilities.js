@@ -21,7 +21,7 @@ export const jstringify = item => JSON.stringify(item)
 export const jparse = item => JSON.parse(item)
 
 export const invalidType = () => {
-  throw new Error('Provided key is an invalid type.')
+  throw new Error("Provided key is an invalid type.")
 }
 
 export const isJsonString = str => {
