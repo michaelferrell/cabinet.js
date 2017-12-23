@@ -6,5 +6,5 @@ API Documentation here: Coming soon
 
 ### Implementation Example
 ```js
-// import the react-json-view component
+// import the Cabinet module
 import Cabinet from 'cabinet'
