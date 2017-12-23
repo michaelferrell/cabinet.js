@@ -17,7 +17,7 @@ module.exports = function(grunt) {
           ]
         },
         files: {
-          "./exapmles/dist/cabinet.js": ["./examples/src/index.js"]
+          "./examples/dist/cabinet.js": ["./examples/src/index.js"]
         }
       }
     },
