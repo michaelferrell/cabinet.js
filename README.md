@@ -31,3 +31,4 @@ Interact with the module from `/examples/src/index.js`.  You can log output to t
 ```
 npm run build
 ```
+production build output to `/dist/cabinet.js`
