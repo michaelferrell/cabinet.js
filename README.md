@@ -16,6 +16,7 @@ import Cabinet from './Cabinet'
 ```
 
 ### Contribute
+#### Development Build
 ```bash
 # install dependencies
 npm install --save-dev
@@ -26,3 +27,7 @@ npm run dev
 Once that's running, open `/examples/dist/index.html` in your browser.
 Interact with the module from `/examples/src/index.js`.  You can log output to the console or render output to the examples index page.
 
+#### Production Build
+```
+npm run build
+```
