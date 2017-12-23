@@ -1,9 +1,11 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
-"use strict";
+'use strict';
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+
+var _utilities = require('./utilities');
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -11,13 +13,13 @@ var Entry = function Entry(val) {
   _classCallCheck(this, Entry);
 
   this.val = val;
-  this.type = Object.prototype.toString.call(val);
+  this.type = (0, _utilities.getType)(val);
   this.dateCreated = new Date();
 };
 
 exports.default = Entry;
 
-},{}],2:[function(require,module,exports){
+},{"./utilities":4}],2:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -108,19 +110,19 @@ var StorageFactory = function StorageFactory(storageType) {
 exports.default = StorageFactory;
 
 },{"./Entry":1,"./utilities":4}],3:[function(require,module,exports){
-'use strict';
+"use strict";
 
-var _StorageFactory = require('./StorageFactory');
+var _StorageFactory = require("./StorageFactory");
 
 var _StorageFactory2 = _interopRequireDefault(_StorageFactory);
 
-var _utilities = require('./utilities');
+var _utilities = require("./utilities");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 if ((0, _utilities.storageSupported)()) {
-  var cabinet = new _StorageFactory2.default('local');
-  cabinet.session = new _StorageFactory2.default('session');
+  var cabinet = new _StorageFactory2.default("local");
+  cabinet.session = new _StorageFactory2.default("session");
   window.Cabinet = cabinet;
 }
 
@@ -170,7 +172,7 @@ var jparse = exports.jparse = function jparse(item) {
 };
 
 var invalidType = exports.invalidType = function invalidType() {
-  throw new Error('Provided key is an invalid type.');
+  throw new Error("Provided key is an invalid type.");
 };
 
 var isJsonString = exports.isJsonString = function isJsonString(str) {

@@ -27,6 +27,7 @@ module.exports = function(grunt) {
             'src/index.js',
             'src/StorageFactory.js',
             'src/utilities.js',
+            'src/Entry.js',
         ],
         tasks: ['browserify'],
         options: {
