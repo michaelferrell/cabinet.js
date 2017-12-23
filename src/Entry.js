@@ -1,3 +1,5 @@
+import { getType } from './utilitiesx'
+
 class Entry {
   constructor(val) {
     this.val  = val
