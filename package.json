@@ -1,6 +1,6 @@
 {
   "name": "cabinet-storage",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A simple interface for accessing local and session storage",
   "main": "dist/cabinet.js",
   "files": [
