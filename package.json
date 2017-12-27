@@ -1,36 +1,37 @@
 {
   "name": "cabinet-storage",
-  "version": "0.0.2",
   "description": "A simple interface for accessing local and session storage",
-  "main": "dist/cabinet.js",
+  "version": "0.0.3",
+  "main": "dist/main.js",
   "files": [
     "dist/"
   ],
-  "scripts": {
-    "build": "grunt",
-    "predev": "grunt --gruntfile Gruntfile-examples.js",
-    "dev": "grunt --gruntfile Gruntfile-examples.js watch"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/michaelferrell/cabinet.js.git"
   },
-  "author": "Michael Ferrell",
-  "license": "ISC",
   "bugs": {
     "url": "https://github.com/michaelferrell/cabinet.js/issues"
   },
   "homepage": "https://github.com/michaelferrell/cabinet.js#readme",
   "devDependencies": {
-    "babel-core": "^6.26.0",
-    "babel-plugin-transform-class-properties": "^6.24.1",
-    "babel-plugin-transform-function-bind": "^6.22.0",
-    "babel-preset-env": "^1.6.1",
+    "babel-core": "^6.21.0",
+    "babel-loader": "^6.2.10",
+    "babel-plugin-transform-class-properties": "^6.11.5",
+    "babel-plugin-transform-decorators-legacy": "^1.3.4",
+    "babel-plugin-transform-function-bind": "^6.8.0",
+    "babel-plugin-transform-node-env-inline": "^6.8.0",
     "babel-preset-es2015": "^6.24.1",
-    "babelify": "^8.0.0",
-    "grunt": "^1.0.1",
-    "grunt-browserify": "^5.2.0",
-    "grunt-contrib-uglify": "^3.2.1",
-    "grunt-contrib-watch": "^1.0.0"
+    "babel-preset-stage-0": "^6.24.1",
+    "babel-preset-stage-2": "^6.24.1",
+    "babel-register": "^6.24.1",
+    "cross-env": "^5.0.5",
+    "webpack": "^2.2.1",
+    "webpack-dev-server": "^2.3.0"
+  },
+  "scripts": {
+    "demo": "cross-env NODE_ENV=demo webpack -p --display-error-details --progress",
+    "dev": "cross-env NODE_ENV=development webpack-dev-server",
+    "build": "cross-env NODE_ENV=production webpack -p --display-error-details --progress"
   }
 }
