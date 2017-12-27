@@ -21,14 +21,14 @@ import Cabinet from 'cabinet-storage'
 # install dependencies
 npm install --save-dev
 
-# run dev build
-npm run dev
+# run demo build
+npm run demo
 ```
-Once that's running, open `/examples/dist/index.html` in your browser.
-Interact with the module from `/examples/src/index.js`.  You can log output to the console or render output to the examples index page.
+Next, open `/demo/dist/index.html` in your browser.
+Interact with the module from `/demo/src/demo.js`.  You can log output to the console or render output to the examples index page.
 
 #### Production Build
 ```
 npm run build
 ```
-production build is output to `/dist/cabinet.js`
+production build is output to `/dist/main.js`
