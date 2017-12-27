@@ -12,7 +12,7 @@ npm install cabinet-storage
 ### Implementation Example
 ```js
 // import the Cabinet module
-import Cabinet from './Cabinet'
+import Cabinet from 'cabinet-storage'
 ```
 
 ### Contribute
