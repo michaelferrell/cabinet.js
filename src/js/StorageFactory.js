@@ -20,11 +20,12 @@ class StorageFactory {
     return true
   }
 
-  get = key => {
+  get = (key, defaultVal = null) => {
     if (!util.isString(key)) {
       util.invalidType()
       return false
     }
+
     let val = null
     let item = this.Storage.getItem(key)
     if (item !== null && util.isJsonString(item)) {
@@ -32,6 +33,9 @@ class StorageFactory {
       val = item.hasOwnProperty('val') ? item.val : item
     } else if (util.isString(item)) {
       val = item
+    } else if (item === null && util.isValidValue(defaultVal)) {
+      this.set(key, defaultVal)
+      val = defaultVal
     }
     return val
   }
