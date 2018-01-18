@@ -17,7 +17,7 @@ class StorageFactory {
     } else {
       return false
     }
-    return true
+    return val
   }
 
   get = (key, defaultVal = null) => {
