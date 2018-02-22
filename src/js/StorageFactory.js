@@ -72,10 +72,12 @@ class StorageFactory {
 
   getAllX = () => {
     const keys = Object.keys(this.Storage)
-    return keys.length ? keys.map(key => {
-      // this.get(key)
-      return {key: key, val: this.get(key)}
-    }) : []
+    return keys.length
+      ? keys.map(key => {
+          // this.get(key)
+          return { key: key, val: this.get(key) }
+        })
+      : []
   }
 
   keys = () => Object.keys(this.Storage)
@@ -108,7 +110,8 @@ class StorageFactory {
 
   removeExpired = () => {
     Object.keys(this.Storage).map(key => {
-      let item = this.Storage.getItem(key)
+      if (!isValidKey(key)) return
+      let item = this.metadata(key)
       if (hasPropExpires(item) && hasExpired(item.expires)) {
         console.log("EXPIRED item:", key)
         this.remove(key)

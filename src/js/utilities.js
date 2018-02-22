@@ -57,14 +57,20 @@ export const isValidExpiration = val => {
   }
 }
 
-export const msByTimeUnit = unit =>
-  unit === "day"
-    ? MS_PER_DAY
-    : unit === "hour"
-      ? MS_PER_HOUR
-      : unit === "minute"
-        ? MS_PER_MINUTE
-        : unit === "second" ? MS_PER_SECOND : invalidTimeUnitError()
+export const msByTimeUnit = unit => {
+  switch (unit) {
+    case "day":
+      return MS_PER_DAY
+    case "hour":
+      return MS_PER_HOUR
+    case "minute":
+      return MS_PER_MINUTE
+    case "second":
+      return MS_PER_SECOND
+    default:
+      invalidTimeUnitError()
+  }
+}
 
 export const createExpiration = ({ expires, unit = "day" }) => {
   console.log("expires:", expires)
