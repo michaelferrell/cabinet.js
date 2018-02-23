@@ -92,15 +92,16 @@ class StorageFactory {
     return item
   }
 
-  removeExpired = () => {
-    Object.keys(this.Storage).map(key => {
-      if (!isValidKey(key)) return
+  removeExpired = () =>
+    Object.keys(this.Storage).filter(key => {
+      if (!isValidKey(key)) {
+        return false
+      }
       let item = this.getMetadata(key)
       if (hasPropExpires(item) && hasExpired(item.expires)) {
-        this.remove(key)
+        return this.remove(key)
       }
     })
-  }
 }
 
 export default StorageFactory
