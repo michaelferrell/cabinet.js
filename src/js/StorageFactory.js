@@ -26,7 +26,7 @@ class StorageFactory {
       hasPropExpires(attributes) && isValidExpiration(attributes.expires)
         ? createExpiration(attributes)
         : null
-    var entry = JSON.stringify(new Entry(val, expires))
+    let entry = JSON.stringify(new Entry(val, expires))
     try {
       this.Storage.setItem(key, entry)
     } catch (e) {
@@ -46,7 +46,6 @@ class StorageFactory {
       item = JSON.parse(item)
       val = hasPropVal(item) ? item.val : item
       if (hasPropExpires(item) && hasExpired(item.expires)) {
-        console.log("EXPIRED item", key)
         this.remove(key)
         val = null
       }
@@ -98,7 +97,6 @@ class StorageFactory {
       if (!isValidKey(key)) return
       let item = this.getMetadata(key)
       if (hasPropExpires(item) && hasExpired(item.expires)) {
-        console.log("EXPIRED item:", key)
         this.remove(key)
       }
     })
