@@ -22,20 +22,16 @@ class StorageFactory {
     if (!isValidKey(key) || typeof val === "undefined") {
       invalidTypeError()
     }
-
     let expires =
       hasPropExpires(attributes) && isValidExpiration(attributes.expires)
         ? createExpiration(attributes)
         : null
-
     var entry = JSON.stringify(new Entry(val, expires))
-
     try {
       this.Storage.setItem(key, entry)
     } catch (e) {
       storageError(e)
     }
-
     return val
   }
 
@@ -70,16 +66,6 @@ class StorageFactory {
     return keys.length ? keys.map(key => this.get(key)) : []
   }
 
-  getAllX = () => {
-    const keys = Object.keys(this.Storage)
-    return keys.length
-      ? keys.map(key => {
-          // this.get(key)
-          return { key: key, val: this.get(key) }
-        })
-      : []
-  }
-
   keys = () => Object.keys(this.Storage)
 
   remove = key => {
@@ -97,7 +83,7 @@ class StorageFactory {
 
   count = () => Object.keys(this.Storage).length
 
-  metadata = key => {
+  getMetadata = key => {
     if (!isValidKey(key)) {
       invalidTypeError()
     }
@@ -111,7 +97,7 @@ class StorageFactory {
   removeExpired = () => {
     Object.keys(this.Storage).map(key => {
       if (!isValidKey(key)) return
-      let item = this.metadata(key)
+      let item = this.getMetadata(key)
       if (hasPropExpires(item) && hasExpired(item.expires)) {
         console.log("EXPIRED item:", key)
         this.remove(key)
