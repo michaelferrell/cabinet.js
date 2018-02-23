@@ -2,7 +2,7 @@ import { getType } from "./utilities"
 import { SOURCE } from "./constants"
 
 class Entry {
-  constructor(val, expires) {
+  constructor(val, expires = null) {
     this.val  = val
     this.type = getType(val)
     this.dateCreated = new Date()

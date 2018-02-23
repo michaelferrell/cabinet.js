@@ -39,7 +39,6 @@ class StorageFactory {
     if (!isValidKey(key)) {
       invalidTypeError()
     }
-
     let val = null
     let item = this.Storage.getItem(key)
 
