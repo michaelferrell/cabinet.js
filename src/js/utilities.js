@@ -3,7 +3,8 @@ import {
   MS_PER_MINUTE,
   MS_PER_HOUR,
   MS_PER_DAY,
-  SOURCE
+  SOURCE,
+  TIME_UNITS
 } from "./constants"
 
 export const storageSupported = () =>
@@ -33,15 +34,7 @@ export const isJsonString = str => {
   return true
 }
 
-export const isValidKey = val => (isString(val) && val.length) || isNumber(val)
-
-export const isValidValue = val =>
-  isString(val) ||
-  isArray(val) ||
-  isObject(val) ||
-  isDate(val) ||
-  isNumber(val) ||
-  isBool(val)
+export const hasAttribute = (object, name) => isObject(object) && object[name] !== undefined
 
 export const hasPropVal = operand =>
   isObject(operand) && operand.hasOwnProperty("val")
@@ -49,11 +42,31 @@ export const hasPropVal = operand =>
 export const hasPropExpires = operand =>
   isObject(operand) && operand.hasOwnProperty("expires")
 
-export const isValidExpiration = val => {
-  if (isNumber(val) || isDate(val)) {
+export const isValidKey = val => (isString(val) && val.length) || isNumber(val)
+
+export const isValidTimeUnit = unit =>
+  isString(unit) && TIME_UNITS.indexOf(unit.toLowerCase()) > -1
+
+export const isValidExpiration = expires => {
+  if (isDate(expires)) {
+    // Date instance passed in
     return true
-  } else {
+  } else if (
+    !isObject(expires) ||
+    !expires.hasOwnProperty("value") ||
+    !expires.hasOwnProperty("unit")
+  ) {
+    throw new Error(
+      "Expiration must be an object containing a value and a unit property, or a Date instance."
+    )
+  } else if (!isNumber(expires.value)) {
     throw new Error("Expiration value must be a number.")
+  } else if (!isValidTimeUnit(expires.unit)) {
+    throw new Error(
+      "Expiration unit must be a string set to a valid time unit (ie. week, day, hour, minute, second)."
+    )
+  } else {
+    return true
   }
 }
 
@@ -72,24 +85,25 @@ export const msByTimeUnit = unit => {
   }
 }
 
-export const createExpiration = ({ expires, unit = "day" }) => {
-  console.log("expires:", expires)
-  console.log("unit:", unit)
-  // Date instance passed in
+
+export const createExpiration = expires => {
   if (isDate(expires)) {
     return expires
   }
-  expires = Date.now() + expires * msByTimeUnit(unit)
-  return new Date(expires)
+  let milliseconds = msByTimeUnit(expires.unit.toLowerCase())
+  return new Date(
+    Date.now() + expires.value * milliseconds
+  )
 }
 
-export const hasExpired = dateStr => {
-  let expires = Date.parse(dateStr)
-  // only use expires if its a number (excluding NaN)
-  if (!isNaN(expires) && expires <= Date.now()) {
+export const hasExpired = item => {
+  if (!hasPropExpires(item)) {
+    return false
+  } else if (Date.parse(item.expires) <= Date.now()) {
     return true
+  } else {
+    return false
   }
-  return false
 }
 
 export const invalidTypeError = () => {
@@ -97,7 +111,6 @@ export const invalidTypeError = () => {
 }
 
 export const storageError = e => {
-  alert(e)
   throw new Error(e)
 }
 

@@ -6,6 +6,7 @@ import {
   hasPropVal,
   invalidTypeError,
   isJsonString,
+  isObject,
   isString,
   isValidExpiration,
   isValidKey,
@@ -15,16 +16,15 @@ import {
 class StorageFactory {
   constructor(storageType) {
     this.Storage = storageType === "session" ? sessionStorage : localStorage
-    this.removeExpired()
   }
 
-  set = (key, val, attributes = null) => {
+  set = (key, val, metadata = null) => {
     if (!isValidKey(key) || typeof val === "undefined") {
       invalidTypeError()
     }
     let expires =
-      hasPropExpires(attributes) && isValidExpiration(attributes.expires)
-        ? createExpiration(attributes)
+      hasPropExpires(metadata) && isValidExpiration(metadata.expires)
+        ? createExpiration(metadata.expires)
         : null
     let entry = JSON.stringify(new Entry(val, expires))
     try {
@@ -45,7 +45,7 @@ class StorageFactory {
     if (item !== null && isJsonString(item)) {
       item = JSON.parse(item)
       val = hasPropVal(item) ? item.val : item
-      if (hasPropExpires(item) && hasExpired(item.expires)) {
+      if (hasExpired(item)) {
         this.remove(key)
         val = null
       }
@@ -98,7 +98,7 @@ class StorageFactory {
         return false
       }
       let item = this.getMetadata(key)
-      if (hasPropExpires(item) && hasExpired(item.expires)) {
+      if (hasExpired(item)) {
         return this.remove(key)
       }
     })
