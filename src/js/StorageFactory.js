@@ -2,7 +2,7 @@ import Entry from "./Entry"
 import {
   createExpiration,
   hasExpired,
-  hasPropExpires,
+  hasAttribute,
   hasPropVal,
   invalidTypeError,
   isJsonString,
@@ -23,7 +23,7 @@ class StorageFactory {
       invalidTypeError()
     }
     let expires =
-      hasPropExpires(metadata) && isValidExpiration(metadata.expires)
+      hasAttribute(metadata, "expires") && isValidExpiration(metadata.expires)
         ? createExpiration(metadata.expires)
         : null
     let entry = JSON.stringify(new Entry(val, expires))

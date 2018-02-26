@@ -34,13 +34,10 @@ export const isJsonString = str => {
   return true
 }
 
-export const hasAttribute = (object, name) => isObject(object) && object[name] !== undefined
+export const hasAttribute = (object, name) => isObject(object) && object.hasOwnProperty(name)
 
 export const hasPropVal = operand =>
   isObject(operand) && operand.hasOwnProperty("val")
-
-export const hasPropExpires = operand =>
-  isObject(operand) && operand.hasOwnProperty("expires")
 
 export const isValidKey = val => (isString(val) && val.length) || isNumber(val)
 
@@ -97,7 +94,7 @@ export const createExpiration = expires => {
 }
 
 export const hasExpired = item => {
-  if (!hasPropExpires(item)) {
+  if (!hasAttribute(item, "expires")) {
     return false
   } else if (Date.parse(item.expires) <= Date.now()) {
     return true
