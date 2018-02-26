@@ -3,7 +3,6 @@ import {
   createExpiration,
   hasExpired,
   hasAttribute,
-  hasPropVal,
   invalidTypeError,
   isJsonString,
   isObject,
@@ -44,7 +43,7 @@ class StorageFactory {
 
     if (item !== null && isJsonString(item)) {
       item = JSON.parse(item)
-      val = hasPropVal(item) ? item.val : item
+      val = hasAttribute(item, "val") ? item.val : item
       if (hasExpired(item)) {
         this.remove(key)
         val = null

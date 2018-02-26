@@ -36,9 +36,6 @@ export const isJsonString = str => {
 
 export const hasAttribute = (object, name) => isObject(object) && object.hasOwnProperty(name)
 
-export const hasPropVal = operand =>
-  isObject(operand) && operand.hasOwnProperty("val")
-
 export const isValidKey = val => (isString(val) && val.length) || isNumber(val)
 
 export const isValidTimeUnit = unit =>
