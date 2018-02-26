@@ -63,7 +63,7 @@ export const isValidExpiration = expires => {
     throw new Error("Expiration value must be a number.")
   } else if (!isValidTimeUnit(expires.unit)) {
     throw new Error(
-      "Expiration unit must be a string set to a valid time unit (ie. week, day, hour, minute, second)."
+      "Expiration unit must be a string set to a valid time unit (ie. day, hour, minute, second)."
     )
   } else {
     return true
