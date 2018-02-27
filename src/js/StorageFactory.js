@@ -69,8 +69,11 @@ class StorageFactory {
     if (!isValidKey(key)) {
       invalidTypeError()
     }
-    this.Storage.removeItem(key)
-    return true
+    if (this.Storage.getItem(key) !== null) {
+      this.Storage.removeItem(key)
+      return true
+    }
+    return null
   }
 
   removeAll = () => {
