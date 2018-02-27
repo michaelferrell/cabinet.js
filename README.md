@@ -128,8 +128,11 @@ Cabinet.getAll().filter(val => typeof val === "number") // filtered array
 **Examples**
 
 ```js
+// returns true if the item was successfully removed
+Cabinet.remove("reminder") // true
 
-Cabinet.remove("reminder") // returns true
+// returns null if the item doesn't exist
+Cabinet.remove("doesntExist") // null
 
 ```
 
