@@ -12,23 +12,28 @@ npm install cabinet-storage
 import Cabinet from "cabinet-storage"
 ```
 
-### API Reference
+### Methods
 
-#### Local Storage Usage
+Cabinet uses local storage by default. Access session storage under the `Cabinet.session` namespace.
 
 **```Cabinet.set(key, val[, metadata])```**
 
 > Creates an item inside local storage
 
-Examples
+**Parameters**
+1. `key` (**String | Number**)
+2. `val` (**Any**)
+3. `metadata` (**Object: optional**)
+
+**Examples**
 
 ```js
 
 Cabinet.set("dog", "Scooby") // returns "Scooby"
 Cabinet.set("total", 50/(10-5)) // 10
-Cabinet.set("person", {name: "Michael", age: 26, gender: "Male"}); // the object
-Cabinet.set("animals", ["lion", "tiger", "bear"]); // the array
-Cabinet.set("friends", [{name: "Stan"}, {name: "Wendy"}]); // the collection
+Cabinet.set("person", {name: "Michael", age: 26, gender: "Male"}); // storing objects
+Cabinet.set("animals", ["lion", "tiger", "bear"]); // storing arrays
+Cabinet.set("friends", [{name: "Stan"}, {name: "Wendy"}]); // storing collection
 Cabinet.set("check", true); // true
 Cabinet.set("reminder", new Date(Date.now() + 1000)); // Mon Feb 26 2018 21:47:15 GMT-0800 (Pacific Standard Time)
 
@@ -37,12 +42,12 @@ Cabinet.set("reminder", new Date(Date.now() + 1000)); // Mon Feb 26 2018 21:47:1
 
 ```js
 
-// set expiration using a new Date instance
+// set an expiration using a new Date instance
 Cabinet.set("reminder", "Thanks a ton", {
   expires: new Date(Date.now() + 300000000)
 })
 
-// set expiration to 30 days from now
+// set an expiration to 30 days from now
 Cabinet.set("partyime", "It's time to party", {
  expires: {value: 30, unit: "day"} // returns "It's time to party"
 })
@@ -61,7 +66,11 @@ Cabinet.set("dueDate", "Project due", {
 
 > Retrieves an item from local storage if it exists
 
-Examples
+**Parameters**
+1. `key` (**String | Number**)
+2. `defaultVal` (**Any: optional**)
+
+**Examples**
 
 ```js
 
@@ -93,7 +102,7 @@ Cabinet.get("nameField", "Enter Your Name") // "Enter Your Name"
 
 > Retrieves all items from local storage
 
-Examples
+**Examples**
 
 ```js
 
@@ -111,7 +120,10 @@ Cabinet.getAll().filter(val => typeof val === "number") // filtered array
 
 > Removes an item from local storage if it exists
 
-Examples
+**Parameters**
+1. `key` (**String | Number**)
+
+**Examples**
 
 ```js
 
@@ -125,7 +137,7 @@ Cabinet.remove("reminder") // returns true
 
 > Removes all items from local storage
 
-Examples
+**Examples**
 
 ```js
 
@@ -137,9 +149,12 @@ Cabinet.removeAll() // returns true
 
 **```Cabinet.getMetadata(key)```**
 
-> Retrieves a set of attributes that are saved with an item inside local storage
+> Retrieves a set of attributes that Cabinet stores with an item inside local storage
 
-Examples
+**Parameters**
+1. `key` (**String | Number**)
+
+**Examples**
 
 ```js
 // readable properties
@@ -167,7 +182,7 @@ if (Cabinet.getMetadata("reminder").source === "CABINET_STORAGE") {
 
 > Removes all expired items from local storage
 
-Examples
+**Examples**
 
 ```js
 // returns an array containing the keys of the removed items
@@ -183,7 +198,7 @@ Cabinet.removeExpired() // null
 
 > Returns a count of the number of items saved in local storage
 
-Examples
+**Examples**
 
 ```js
 Cabinet.count() // 3
@@ -195,7 +210,7 @@ Cabinet.count() // 3
 
 > Returns an array containing all of the keys in local storage
 
-Examples
+**Examples**
 
 ```js
 Cabinet.keys() // ["key1", "key2", "key3"]
