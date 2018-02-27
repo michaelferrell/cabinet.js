@@ -16,6 +16,8 @@ import Cabinet from "cabinet-storage"
 
 Cabinet uses local storage by default. Access session storage under the `Cabinet.session` namespace.
 
+- - -
+
 **```Cabinet.set(key, val[, metadata])```**
 
 > Creates an item inside local storage
